@@ -17,13 +17,13 @@ public class AttackController : MonoBehaviour
         _isAttack = false;
     }
 
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Attack();
-        }
-    }
+    //private void Update()
+    //{
+    //    if (Input.GetMouseButtonDown(0))
+    //    {
+    //        Attack();
+    //    }
+    //}
 
     public void Attack()
     {

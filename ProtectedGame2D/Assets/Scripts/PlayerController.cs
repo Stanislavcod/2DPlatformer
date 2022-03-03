@@ -8,15 +8,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioSource jumpSound;
     [SerializeField] private Transform playerModelTransform;
     [SerializeField] private float speedX = -1f;
+    
 
     private Rigidbody2D _rb;
     private Finish _finish;
     private LeverArm _leverArm;
+    private FixedJoystick _fixedJoystick;
 
     private bool _isFacingRight = true;
     private bool _isGround = false;
     private bool _isJump = false;
-    private  bool _isFinish = false;
+    private bool _isFinish = false;
     private bool _isLeverArm = false;
     private float _horizontal = 0f;
 
@@ -28,32 +30,25 @@ public class PlayerController : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _finish = GameObject.FindGameObjectWithTag("Finish").GetComponent<Finish>();
+        _fixedJoystick = GameObject.FindGameObjectWithTag("Fixed Joystick").GetComponent<FixedJoystick>();
         _leverArm = FindObjectOfType<LeverArm>();
     }
 
     void Update()
     {
-        _horizontal = Input.GetAxis("Horizontal"); // -1 : 1
+
+        //_horizontal = Input.GetAxis("Horizontal"); // -1 : 1
+        _horizontal = _fixedJoystick.Horizontal;
         animator.SetFloat("speedX", Mathf.Abs(_horizontal));
 
-        if (Input.GetKeyDown(KeyCode.W) && _isGround)
+        if (Input.GetKeyDown(KeyCode.W))
         {
-            _isJump = true;
-            jumpSound.Play();
-
+            Jump();
         }
 
         if (Input.GetKeyDown(KeyCode.F))
         {
-            if (_isFinish)
-            {
-                _finish.FinishLevel();
-            }
-            if (_isLeverArm)
-            {
-
-                _leverArm.ActivateLeverArm();
-            }
+          Interact();
         }
     }
 
@@ -86,6 +81,27 @@ public class PlayerController : MonoBehaviour
         playerModelTransform.localScale = playerScale;
     }
 
+    public void Jump()
+    {
+        if(_isGround)
+        {
+            _isJump = true;
+            jumpSound.Play();
+        } 
+    }
+
+    public void Interact()
+    {
+        if (_isFinish)
+        {
+            _finish.FinishLevel();
+        }
+        if (_isLeverArm)
+        {
+
+            _leverArm.ActivateLeverArm();
+        }
+    }
     void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Ground"))

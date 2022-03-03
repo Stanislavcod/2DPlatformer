@@ -2011,8 +2011,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.162093, y: 0.18000035}
-  m_Size: {x: 0.810899, y: 2.3623133}
+  m_Offset: {x: 0.13590153, y: 0.18000035}
+  m_Size: {x: 1.0029632, y: 2.3623133}
   m_Direction: 0
 --- !u!114 &8158601601101654177
 MonoBehaviour:
@@ -2027,12 +2027,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyModelTransform: {fileID: 6348565768349552808}
-  walkDistance: 6
+  walkDistance: 20
   patrolSpeed: 1
   chasingSpeed: 3
   timeToWait: 5
   timeToChase: 3
-  minDistanceToPlayer: 1.15
 --- !u!114 &1729148181151914145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2050,7 +2049,7 @@ MonoBehaviour:
   maxDistance: 6
   layerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 64
 --- !u!114 &5040800809939869790
 MonoBehaviour:
   m_ObjectHideFlags: 0
