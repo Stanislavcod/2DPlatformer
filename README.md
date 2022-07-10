@@ -1,2 +1,2 @@
-# Unity
-My Unity Project
+# 2D Platformer
+First Unity Project
